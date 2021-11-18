@@ -1,0 +1,239 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Prediction</title>
+
+
+    <link rel="stylesheet" href='/static/bootstrap-4.3.1/css/bootstrap.css'>
+    <link rel="stylesheet" href='/static/fontawesome/css/all.min.css'>
+    <link rel="stylesheet" href="/static/bootstrap-4.3.1/css/styles.css">
+    <link rel="stylesheet" href="/static/custom.css">
+
+    <script src="/static/fontawesome/js/all.js"></script>
+    <script src="/static/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <style>
+        body {
+            background-image: url('/static/image/container.jpg');
+
+        }
+    </style>
+
+
+
+</head>
+
+<body class='bg'>
+
+    <!-- As a heading -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">SHIPMENT PRICE</a>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <div class="container">
+
+        <form name='form' action="/predict" method="POST">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                             <!-- Manufacturing Country-->
+                            <h5 class="card-title">Manufacturing Country</h5>
+                            <select name="manufacturing" id="manufacturing" name='manufacturing'>
+                                <option value="Canada">Canada</option>
+                                <option value="China">China</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
+                                <option value="India">India</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Korea">Korea</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Not Applicable">Not Applicable</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="UK">UK</option>
+                                <option value="USA">USA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                             <!-- shipment date -->
+                            <h5 class="card-title">Date</h5>
+                            <input type='date' id='date' name='date'>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-6">
+                   <div class="card">
+                        <div class="card-body">
+                            <!-- Destination country -->
+                            <h5 class="card-title">Destination Country</h5>
+                            <select name="Country" id="Country" name="Country">
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Angola">Angola</option>
+                                <option value="Belize">Belize</option>
+                                <option value="Benin">Benin</option>
+                                <option value="Botswana">Botswana</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Burundi">Burundi</option>
+                                <option value="Cameroon">Cameroon</option>
+                                <option value="Congo">Congo</option>
+                                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Ethiopia">Ethiopia</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Guinea">Guinea</option>
+                                <option value="Guyana">Guyana</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Kazakhstan">Kazakhstan</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                <option value="Lebanon">Lebanon</option>
+                                <option value="Lesotho">Lesotho</option>
+                                <option value="Liberia">Liberia</option>
+                                <option value="Libya">Libya</option>
+                                <option value="Malawi">Malawi</option>
+                                <option value="Mali">Mali</option>
+                                <option value="Mozambique">Mozambique</option>
+                                <option value="Namibia">Namibia</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Rwanda">Rwanda</option>
+                                <option value="Senegal">Senegal</option>
+                                <option value="Sierra Leone">Sierra Leone</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="Sudan">Sudan</option>
+                                <option value="Swaziland">Swaziland</option>
+                                <option value="Tanzania">Tanzania</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Uganda">Uganda</option>
+                                <option value="Vietnam">Vietnam</option>
+                                <option value="Zambia">Zambia</option>
+                                <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Fulfillment -->
+                            <h5 class="card-title">Fulfill Via</h5>
+                            <select name="Fulfill" id="Fulfill" name="'Fulfill">
+                                <option value="From RDC">From RDC</option>
+                                <option value="Direct Drop">Direct Drop</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                             <!-- Mode of shipment-->
+                            <h5 class="card-title">Shipment Mode</h5>
+                            <select name="Shipment" id="Shipment" name="shipment">
+                                <option value="Air">Air</option>
+                                <option value="Ocean">Ocean</option>
+                                <option value="Truck">Truck</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sub Classification</h5>
+                            <!-- classification of medicine -->
+                            <select name="classification" id="classification" name="classification">
+                                <option value="Adult">Adult</option>
+                                <option value="HIV test">HIV test</option>
+                                <option value="Malaria">Malaria</option>
+                                <option value="Pediatric">Pediatric</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Weight in Kilograms</h5>
+                            <input type='text' id='weight' name="weight">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Line Item Quantity</h5>
+                            <input type='text' id='qty' name="qty">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <!-- Submit -->
+
+            <input type="submit" value="SUBMIT" style='font-weight: bolder;
+            border: double;
+            border-radius: 100px;
+            height: 100px;
+            width: 100px;
+            background-color: white;
+            font-size: medium';>
+ 
+        </form>
+
+        <br>
+        <h3 style='color:lime'>{{ prediction_text }}</h3>
+
+
+    </div>
+<script>
+    
+</script>
+</body>
+
+</html>
